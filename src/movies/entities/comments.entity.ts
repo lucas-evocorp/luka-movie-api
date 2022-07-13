@@ -27,7 +27,7 @@ export class Comment {
   user: User[];
 
   @Column({ nullable: true, name: 'user_id' })
-  userId: number;
+  userId: string;
 
   @ManyToOne(() => Movie, (movies) => movies.comments, {
     onDelete: 'CASCADE',

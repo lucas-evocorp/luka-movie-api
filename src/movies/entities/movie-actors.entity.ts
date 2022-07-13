@@ -3,7 +3,6 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
-  PrimaryColumn,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Actor } from './actors.entity';
@@ -21,9 +20,9 @@ export class MovieActors {
   movies: Movie[];
 
   @Column({ name: 'movie_id' })
-  moviesId: number;
+  movieId: number;
 
-  @ManyToOne(() => Actor, (actors) => actors.movieactor, {
+  @ManyToOne(() => Actor, (actors) => actors.movieActors, {
     onDelete: 'CASCADE',
   })
   @JoinColumn({ name: 'actor_id' })

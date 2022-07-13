@@ -1,6 +1,6 @@
 import { Comment } from 'src/movies/entities/comments.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { MoviesFavorites } from './moviesfavorites.entity';
+import { MovieFavorite } from '../../movies/entities/moviesfavorites.entity';
 
 @Entity({ name: 'users' })
 export class User {
@@ -19,10 +19,10 @@ export class User {
   @Column()
   password: string;
 
-  @OneToMany(() => MoviesFavorites, (moviesfavorites) => moviesfavorites.user, {
+  @OneToMany(() => MovieFavorite, (moviesfavorites) => moviesfavorites.user, {
     cascade: true,
   })
-  moviesfavorites: MoviesFavorites[];
+  moviesfavorites: MovieFavorite[];
 
   @OneToMany(() => Comment, (comments) => comments.user, {})
   comment: Comment[];

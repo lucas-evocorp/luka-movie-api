@@ -6,12 +6,12 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { User } from './user.entity';
+import { User } from '../../user/entities/user.entity';
 
 @Entity({ name: 'movies_favorites' })
-export class MoviesFavorites {
-  @PrimaryGeneratedColumn()
-  id: number;
+export class MovieFavorite {
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @ManyToOne(() => User, (users) => users.moviesfavorites, {
     onDelete: 'CASCADE',
@@ -19,15 +19,15 @@ export class MoviesFavorites {
   @JoinColumn({ name: 'user_id' })
   user: User[];
 
-  @ManyToOne(() => Movie, (movies) => movies.moviesfavorites, {
+  @ManyToOne(() => Movie, (movies) => movies.moviesFavorites, {
     onDelete: 'CASCADE',
   })
   @JoinColumn({ name: 'movie_id' })
   movies: Movie[];
 
   @Column({ name: 'movie_id' })
-  moviesId: number;
+  movieId: string;
 
   @Column({ name: 'user_id' })
-  usersId: number;
+  userId: string;
 }

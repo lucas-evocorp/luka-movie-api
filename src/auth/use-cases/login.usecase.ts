@@ -1,15 +1,15 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { CreateAuthDto } from './dto/create-auth.dto';
+import { CreateAuthDto } from '../dto/create-auth.dto';
 import * as bcrypt from 'bcrypt';
 import { GetUserByEmailUseCase } from 'src/user/use-cases/get-user-by-email.usecase';
 @Injectable()
-export class AuthService {
+export class LoginUseCase {
   constructor(
     private jwtservice: JwtService,
     private readonly getUserByEmailUseCase: GetUserByEmailUseCase,
   ) {}
-  async validateUser(createauthdto: CreateAuthDto) {
+  async execute(createauthdto: CreateAuthDto) {
     const user = await this.getUserByEmailUseCase.execute(createauthdto.email);
     if (user) {
       const typeuser = {

@@ -1,12 +1,11 @@
 import { Module } from '@nestjs/common';
-import { AuthService } from './auth.service';
-import { AuthController } from './auth.controller';
+import { AuthController } from './controllers/auth.controller';
 import { UserModule } from 'src/user/user.module';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { jwtConstants } from './constants';
 import { JwtStrategy } from './estrategies/jwt.strategy';
-import { LocalStrategy } from './estrategies/local.strategy';
+import { LoginUseCase } from './use-cases/login.usecase';
 
 @Module({
   imports: [
@@ -18,7 +17,7 @@ import { LocalStrategy } from './estrategies/local.strategy';
     UserModule,
   ],
   controllers: [AuthController],
-  providers: [AuthService, LocalStrategy, JwtStrategy],
-  exports: [AuthService],
+  providers: [LoginUseCase, JwtStrategy],
+  exports: [LoginUseCase],
 })
 export class AuthModule {}

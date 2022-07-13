@@ -1,5 +1,4 @@
 export interface IuserAuth {
-  userId: number;
-
+  userId: string;
   username: string;
 }

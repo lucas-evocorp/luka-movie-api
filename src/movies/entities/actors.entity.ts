@@ -13,6 +13,6 @@ export class Actor {
   @Column()
   image_url: string;
 
-  @OneToMany(() => MovieActors, (movieactors) => movieactors.actors)
-  movieactor: MovieActors[];
+  @OneToMany(() => MovieActors, (movieActors) => movieActors.actors)
+  movieActors: MovieActors[];
 }

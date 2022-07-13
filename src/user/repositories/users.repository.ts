@@ -18,4 +18,8 @@ export class UsersRepository extends Repository<User> {
 
     return this.save(user);
   }
+
+  async getUserById(id: string): Promise<User> {
+    return this.findOne({ where: { id: String(id) } });
+  }
 }

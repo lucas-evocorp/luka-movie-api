@@ -22,5 +22,5 @@ export class Gallery {
   movies: Movie[];
 
   @Column({ name: 'movie_id' })
-  moviesId: number;
+  movieId: number;
 }

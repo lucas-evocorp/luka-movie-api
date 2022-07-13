@@ -1,20 +1,14 @@
 import { Comment } from 'src/movies/entities/comments.entity';
 import { Gallery } from './gallery.entity';
-import { MoviesFavorites } from 'src/user/entities/moviesfavorites.entity';
-import {
-  Column,
-  Entity,
-  OneToMany,
-  OneToOne,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { MovieActors } from './movie-actors.entity';
 import { MoviesRecommendeds } from './movies-recommendations.entity';
+import { MovieFavorite } from './moviesfavorites.entity';
 
 @Entity({ name: 'movies' })
 export class Movie {
   @PrimaryGeneratedColumn('uuid')
-  id: number;
+  id: string;
 
   @Column({ name: 'movie_name' })
   movieName: string;
@@ -50,14 +44,10 @@ export class Movie {
   })
   movieActors: MovieActors[];
 
-  @OneToMany(
-    () => MoviesFavorites,
-    (moviesfavorites) => moviesfavorites.movies,
-    {
-      onDelete: 'CASCADE',
-    },
-  )
-  moviesfavorites: MoviesFavorites[];
+  @OneToMany(() => MovieFavorite, (moviesfavorites) => moviesfavorites.movies, {
+    onDelete: 'CASCADE',
+  })
+  moviesFavorites: MovieFavorite[];
 
   @OneToMany(() => Comment, (comments) => comments.movie)
   comments: Comment[];
